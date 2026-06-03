@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model adminuser {
+  id            String     @id
+  email         String     @unique
+  password_hash String
+  role          String
+  created_at    DateTime
+}
+
+model reviews {
+  id           String   @id
+  rating       Int
+  review_text  String
+  author_email String
+  platform     String
+  created_at   DateTime
+}
+
+model sessions {
+  id         String   @id
+  title      String
+  turns      Int?
+  asker_id   String
+  created_at DateTime
+}
+
+model turns {
+  id         String   @id
+  session_id String
+  created_at DateTime
+  prompt     String?
+  response   String?
+}
